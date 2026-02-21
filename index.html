@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>4 anni e 4 mesi — Ti amo</title>
+
+<!-- Romantic Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;600&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+@font-face {
+    font-family: 'MyFont';
+    src:
+        url('Valdance Demo.otf') 
+        format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+:root{
+    --bg1: #ffe6f0;
+    --bg2: #fff2e6;
+    --card: rgba(255,255,255,0.88);
+    --accent: #d63384;
+    --accent2: #ff85a2;
+    --text: #4a2c2a;
+    --romantic-font: 'Great Vibes', cursive;
+    --elegant-font: 'Playfair Display', serif;
+    --body-font: 'Cormorant Garamond', serif;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:var(--body-font);color:var(--text)}
+
+body{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background: url(sfondo.gif) no-repeat center center;
+    background-size: 25rem 47rem;
+    padding:30px;
+}
+
+/* Glow romantico generale */
+body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:radial-gradient(circle at center, rgba(255,182,193,0.25), transparent 70%);
+    pointer-events:none;
+    z-index:0;
+}
+
+.card {
+    width:106%;
+    height:30%;
+    max-width:760px;
+    padding:36px;
+    text-align:center;
+    position:relative;
+    top:-16rem;
+    z-index:2;
+}
+
+.card1 {
+    width:112%;
+    max-width:760px;
+    padding:19px;
+    text-align:center;
+    position:relative;
+    top:-14rem;
+    left:-1rem;
+}
+
+.imgcuore {
+    position:absolute;
+    top:2rem;
+    left:-3rem;
+    width:25rem;
+    filter: drop-shadow(0 10px 25px rgba(255,105,180,0.35));
+}
+
+.ag {
+    color:gold;
+    top:-2rem;
+    left:-0.3rem;
+    position:relative;
+    font-family: 'MyFont', cursive;
+    letter-spacing:4px;
+    text-shadow:0 4px 15px rgba(255,215,0,0.4);
+    z-index: 999;
+    font-size: 10rem !important;
+    
+}
+
+.infinity {
+    font-size:10rem !important;
+    position:absolute;
+    color:gold;
+    top:12rem !important;
+    left:6rem;
+    z-index:999;
+    text-shadow:0 6px 20px rgba(255,215,0,0.5);
+}
+
+.title{
+    font-size:2.2rem;
+    margin:0 0 8px;
+    font-family:var(--romantic-font);
+    color:#b31257;
+    text-shadow:0 4px 18px rgba(179,18,87,0.25);
+}
+
+.subtitle{
+    margin:0 0 18px;
+    font-size:1.2rem;
+    font-family:var(--elegant-font);
+    color:#7a3e65;
+}
+
+.message{
+    font-family:var(--body-font);
+    font-size:1.15rem;
+    line-height:1.6;
+    background:linear-gradient(180deg, rgba(255,255,255,0.7), rgba(255,240,245,0.7));
+    padding:18px;
+    border-radius:18px;
+    margin:14px 0;
+    border:1px solid rgba(255,105,180,0.2);
+    backdrop-filter:blur(6px);
+    box-shadow:0 10px 35px rgba(214,51,132,0.15);
+}
+
+.sign{
+    margin-top:12px;
+    font-style:italic;
+    font-family:var(--romantic-font);
+    color:var(--accent2);
+    font-size:1.6rem;
+}
+
+.actions{
+    margin-top:16px;
+    position:relative;
+    top:11rem;
+    left:-0.1rem;
+}
+
+button#reveal{
+    background:linear-gradient(135deg, #ff4e8a, #ff85a2);
+    border:0;
+    padding:12px 22px;
+    border-radius:999px;
+    color:white;
+    font-weight:600;
+    font-family:var(--elegant-font);
+    font-size:1rem;
+    letter-spacing:1px;
+    cursor:pointer;
+    box-shadow:0 8px 25px rgba(255,105,180,0.35);
+    position:relative;
+    top:-18rem;
+    z-index:999;
+    transition:all .25s ease;
+}
+
+button#reveal:hover{
+    transform:translateY(-3px) scale(1.05);
+    box-shadow:0 15px 40px rgba(255,105,180,0.5);
+}
+
+.modal{display:none;position:fixed;inset:0;z-index:1200;align-items:center;justify-content:center;padding:24px}
+.modal.show{display:flex}
+
+.modal-overlay{
+    position:absolute;
+    inset:0;
+    background:rgba(74,0,36,0.55);
+    backdrop-filter:blur(4px);
+}
+
+.modal-dialog{
+    position:relative;
+    z-index:2;
+    background:var(--card);
+    max-width:680px;
+    width:100%;
+    max-height:80vh;
+    border-radius:18px;
+    padding:22px;
+    box-shadow:0 20px 60px rgba(179,18,87,0.35);
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+}
+
+.modal-close{
+    position:absolute;
+    right:14px;
+    top:8px;
+    border:0;
+    background:transparent;
+    font-size:1.8rem;
+    color:var(--accent);
+    cursor:pointer;
+}
+
+.modal-content{
+    overflow:auto;
+    padding:6px 2px 2px 2px;
+    flex:1;
+    font-family:var(--body-font);
+    font-size:1.1rem;
+    line-height:1.7;
+}
+
+.frase1{position:relative;top:32rem;font-size: 2rem !important;color: gold;}
+.frase2{position:relative;top:-20rem;font-size: 2rem !important;color: gold;}
+
+@media (max-width:520px){
+    .title{font-size:1.7rem}
+    .ag{font-size:4rem}
+    .infinity{font-size:6rem}
+}
+</style>
+</head>
+
+<body>
+<main class="card">
+    <h1 class="title frase1">Ti amo immensamente hasta el fundo de mi corazon mi razon de vida!!</h1>
+    <h1 class="ag">A+G</h1>
+    <img src="cuore.png" class="imgcuore">
+    <h1 class="infinity">∞</h1>
+    <div class="card1">
+        <h1 class="title frase2">Feliz 4 anos y 4 meses juntos a mi preciosa compagnera de vida!! <br><br>23 Febbraio 2026</h1>
+        <div class="actions">
+            <button id="reveal">Abrir mi dulce mensaje!!</button>
+        </div>
+    </div>
+</main>
+
+<!-- MODALE invariato -->
+<div id="modal" class="modal" aria-hidden="true">
+    <div class="modal-overlay" data-close></div>
+    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <button class="modal-close" aria-label="Chiudi" data-close>&times;</button>
+        <div class="modal-content">
+            <img src="lucchetto.jpg" style="width: 18rem;">
+            <p style="text-align: center;">
+                Felices 4 años y 4 meses juntos, amor de mi vida Andrea, <br>
+                    tú que cada día eres la estrella que ilumina mi vida y me completa, ¡haciendo de mi vida una obra maestra! ¡Aquí estamos en otros nuevos 23! Amo cada momento que pasamos juntos y experimentar cada evento que la vida nos hace saborear, solo poner mi mano en mi pecho y sentir mi corazón latir mientras cierro los ojos es suficiente para revivir cada recuerdo único y preciado. Me encanta celebrar cada aniversario de un mes juntos porque nos lleva a un nuevo pequeño hito en nuestra vida juntos. Este mes ha sido realmente increíble, con el Día de San Valentín donde juntos expresamos nuestro amor, y siento esto dentro de mí que nos ha dado una felicidad infinita, que ha hecho que nuestro vínculo crezca más y más y nos ha hecho estar más unidos y conectados con nuestras almas que con cada día que pasa se unen más y más para ser una persona capaz de enfrentar cada obstáculo. Quiero agradecerte, amor de mi vida, por permitirme experimentar este hermoso y mágico momento juntos. Amo cómo cada día a tu lado es único y especial. Me despierto cada mañana con el corazón latiendo lleno de felicidad, dándome la energía infinita para afrontar la vida sin miedo. Cada día comienza con tu dulce sonrisa, que me acompaña cada día y me da una fuerza infinita que no puedo describir. Gracias por darme la oportunidad de estar aquí juntos cada día y compartir cada momento de mi vida conmigo. Quiero agradecerte, amor de mi vida, por estar aquí a mi lado y ser la estrella que ilumina mi vida y me ayuda a superar cada desafío, dándome confianza en mí mismo y una sensación de coraje que borra toda mi fragilidad. Todo esto es fruto de nuestra relación, y de cómo te siento aquí en lo más profundo de mi corazón, y por cómo me animas a cada momento a creer en mí mismo y en todo lo que hago. Quiero agradecerte por esto porque cada momento me das fuerza, incluso en esos momentos en los que quiero dejarlo todo porque parece imposible, y como por arte de magia, amor de mi vida, todo se vuelve posible. Y quiero decirte, amor de mi vida, que yo también estoy aquí a tu lado, animándote, extendiéndote la mano, animándote y ayudándote a levantarte. Admiro cada instante de tu preciosa fuerza, que nace de tu corazón, y cómo te entregas por completo, amor de mi vida, en cada cosa que haces. Incluso cuando todo parece perdido, admiro cómo siempre nunca te rendire y siempre llegas a la meta. Y recuerda, amor de mi vida, si te sientes en apuros, escucha a tu corazón, yo estaré aquí para ti, protegiéndote y dándote todo de mí, y alejándote de todo mal porque cada día solo mereces las cosas bellas y positivas que la vida te ofrece. Quiero vivir cada momento juntos para siempre y más allá, amor de mi vida, para llenar siempre la caja de nuestros recuerdos y revivirlos juntos mientras estamos en nuestro preciado abrazo, mi preciado hogar donde cada momento me siento segura mientras tus dulces besos me relajan y me encanta descansar mi cabeza en tu pecho donde escucho suavemente los latidos de tu corazón y junto a tu delicada y dulce voz como la de un niño. Me encanta cerrar los ojos y permanecer para siempre segura en nuestro abrazo mientras siento dentro de mí que nuestras almas se unen dentro de nosotros haciéndonos, en cada momento, una sola persona capaz de enfrentar y conquistar la vida! Felices 4 años y 4 meses juntos, mi compañero de vida, que este sea un nuevo e increíble día juntos que pasaremos con intenso amor mientras estamos en los brazos del otro respirando el mismo aire de amor que nos mantiene unidos para siempre y más allá! Te amo inmensamente desde el fondo de mi corazón, tú que eres la pieza más fundamental que me da la vida y que sin ti no tendría razón de latir, y amo desde el fondo de mi corazón verte feliz y con el deseo de abrazarte para acoger tu dulce y preciosa alma para mantenerla alejada de todo mal en cada momento. Te amo infinitamente desde lo más profundo de mi mente, donde cada día eres el sueño más hermoso y único que quiero soñar y vivir sin volver a abrir los ojos, porque cada momento eres mi preciado sueño y realidad para toda mi vida y más allá! Te amo infinitamente, tú que cada día eres más importante que el oxígeno que respiro, eres la seguridad de mi vida que borra todos mis miedos e inseguridades, eres la estrella que guía mi alma en lo profundo de tu corazón y me completa, eres mi precioso pingüino al que quiero amar toda mi vida y más allá, eres mi dulce y extraordinaria mogliettina a quien cada día admiro con orgullo por cada hazaña que emprendes y por todo el amor que pones en las cosas que haces y por quienes te rodean, tú que eres mi preciosa compañera de vida, ¡mi todo! Gracias por estar aquí cada día, amor de mi vida, y por hacer mi vida única y extraordinaria. ¡A+G+GIOAN+BANANON = FAMILIA hoy, para siempre y más allá! 
+
+            </p>
+            <iframe style="width: 19rem;height: 15rem;" src="https://www.youtube.com/embed/G6VTgOi6bZw?si=75i6XYRYHDRvKTuB" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+</div>
+
+<script>
+(function(){
+    const openBtn=document.querySelector('#reveal');
+    const modal=document.getElementById('modal');
+    const closeEls=modal.querySelectorAll('[data-close]');
+    function openModal(){
+        modal.classList.add('show');
+        modal.setAttribute('aria-hidden','false');
+        document.body.style.overflow='hidden';
+    }
+    function closeModal(){
+        modal.classList.remove('show');
+        modal.setAttribute('aria-hidden','true');
+        document.body.style.overflow='';
+    }
+    if(openBtn){openBtn.addEventListener('click',openModal);}
+    closeEls.forEach(el=>el.addEventListener('click',closeModal));
+    document.addEventListener('keydown',(e)=>{
+        if(e.key==='Escape'&&modal.classList.contains('show'))closeModal();
+    });
+})();
+</script>
+
+</body>
+</html>
